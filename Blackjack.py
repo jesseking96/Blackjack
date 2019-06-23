@@ -80,9 +80,9 @@ class Player():
     
     def win(self):
         '''
-        adds twice the amount of the player's bet to the player's balance
+        adds the amount of the player's bet to the player's balance
         '''
-        self.balance += (self.bet * 2)
+        self.balance += (self.bet)
     
     def lose(self):
         '''
