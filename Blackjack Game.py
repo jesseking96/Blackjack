@@ -12,7 +12,7 @@ import Blackjack as B
 game = B.Game()
 deck = B.Deck()
 game.print_intro()
-name = game.get_player()
+name = game.get_player().title()
 player = B.Player(name)
 player_hand = B.Hand(name)
 dealer = B.Player("Dealer")
@@ -66,7 +66,8 @@ while game.play_game:
     else:
         print("\nYou lose!")
         player.lose()
-    
-    game.play_again()
+    game.check_game_over(player.balance)
+    if game.play_game == True:
+        game.play_again()
 
 game.outro(player.name, player.balance)

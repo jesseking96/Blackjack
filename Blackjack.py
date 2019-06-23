@@ -69,6 +69,13 @@ class Player():
             if self.bet > self.balance:
                 print("\nYou don't have enough money! Try again.")
                 continue
+            elif self.bet <= 0:
+                print("Invalid input. Try again.")
+                continue
+            elif self.bet > 500:
+                print("\nBets are limited to $500. Try again.")
+                continue
+                
             break
     
     def win(self):
@@ -204,7 +211,8 @@ class Game():
         print("If the dealer gets closer to 21 than you, without busting,")
         print("then the dealer wins. To win, you'll have to beat the dealer.")
         print("Kings, Queens, and Jacks are worth 10.")
-        print("Aces can be worth 1 or 11, whichever is advantageous to you.\n\n")
+        print("Aces can be worth 1 or 11, whichever is advantageous to you.")
+        print("Bets are limited to $500\n\n")
         
     def get_player(self):
         '''
@@ -240,6 +248,11 @@ class Game():
                 break
             else:
                 print("Invalid input. Try again.")
+        
+    def check_game_over(self, balance):
+        if balance <= 0:
+            self.play_game = False
+            print("\nYou're out of money!")
         
     def outro(self, name, balance):
         print(f"\nThanks for playing {name}!")
