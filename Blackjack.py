@@ -240,4 +240,9 @@ class Game():
                 break
             else:
                 print("Invalid input. Try again.")
+        
+    def outro(self, name, balance):
+        print(f"\nThanks for playing {name}!")
+        print(f"\nYour final balance was ${balance}.")
+        
     

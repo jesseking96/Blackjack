@@ -39,6 +39,7 @@ while game.play_game:
             print("\nYou've busted!")
             player_busted = True
             player.lose()
+            game.play_again()
             break
         
         player_hand.print_hand()
@@ -50,19 +51,22 @@ while game.play_game:
         if game.is_tie(player_hand.total, dealer_hand.total):
             dealer_hand.print_hand()
             print("\nTie!")
+            game.play_again()
             break
         dealer_hand.hit(deck.deal_card())
         dealer_hand.update_total()
         
-    
+    dealer_hand.print_hand()
     if dealer_hand.is_bust():
         print("\nDealer busted, you win!")
         player.win()
     elif game.is_win(player_hand.total, dealer_hand.total):
-        dealer_hand.print_hand()
         print("\nYou win!")
         player.win()
     else:
-        dealer_hand.print_hand()
         print("\nYou lose!")
         player.lose()
+    
+    game.play_again()
+
+game.outro(player.name, player.balance)
