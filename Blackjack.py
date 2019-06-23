@@ -49,9 +49,16 @@ class Player():
         return "Name : {} \nBalance: ${}".format(self.name,self.balance)
     
     def welcome_player(self):
+        '''
+        Welcomes the player to the game
+        '''
         print(f"\nWelcome {self.name}!")
     
     def bet_amount(self):
+        '''
+        prompts the user to place a bet.
+        checks if the player has enough money to bet.
+        '''
         while True:
             try:
                 print(f"\nBalance: ${self.balance}")
@@ -65,9 +72,15 @@ class Player():
             break
     
     def win(self):
+        '''
+        adds twice the amount of the player's bet to the player's balance
+        '''
         self.balance += (self.bet * 2)
     
     def lose(self):
+        '''
+        subtracts the player's bet from the player's balance
+        '''
         self.balance -= self.bet
         
 class Hand():
@@ -88,6 +101,10 @@ class Hand():
         self.cards.append(new_card2)
     
     def is_hit(self):
+        '''
+        prompts the player to hit or stand
+        checks for a valid response
+        '''
         while True:
             choice = input("Would you like to hit or stand(H/S)? ")
             if choice.upper() == "H":
@@ -111,6 +128,11 @@ class Hand():
         return self.total > 21
     
     def card_value(self, card):
+        '''
+        translates the card into a value to be added.
+        Aces are assumed to equal 11 by default. Aces are converted to equal
+        1 when necessary elsewhere
+        '''
         if card[0] in range(2,11):
             card_value = card[0]
         elif card[0] in ["King", "Queen", "Jack"]:
@@ -122,7 +144,6 @@ class Hand():
     def update_total(self):
         '''
         Updates the total value of the cards in the hand
-        new card should be from deck, and the same card as used in hit()
         '''
         self.total = 0
         for card in self.cards:
@@ -135,9 +156,6 @@ class Hand():
             else:
                 break
     
-    def get_total(self):
-        return self.total
-
     def print_hand(self):
         '''
         Prints the player or dealers hand and total
@@ -148,11 +166,18 @@ class Hand():
         print(f"Total: {self.total}")
         
     def print_dealers_card(self):
+        '''
+        prints the dealers first card, which would be visible to the player
+        at the beginning of the hand
+        '''
         print(f"\n\nDealer's card is {self.cards[0][0]} of {self.cards[0][1]}\n")
         
 class Game():
     
     def __init__(self):
+        '''
+        initializes play_game to true
+        '''
         self.play_game = True
     
     
@@ -202,6 +227,10 @@ class Game():
         return player_total > dealer_total
         
     def play_again(self):
+        '''
+        prompts the player to play another hand
+        checks for valid input
+        '''
         while True:
             replay = input("Would you like to play another hand(Y/N)? ")
             if replay.upper() == "Y":
